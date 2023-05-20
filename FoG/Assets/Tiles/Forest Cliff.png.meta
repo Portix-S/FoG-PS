@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -3626,7 +3626,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Forest Cliff_159: -315718606
-      Forest Cliff_90: -1817692474
       Forest Cliff_91: -45464488
       Forest Cliff_151: 385964684
       Forest Cliff_1: -1202810911
@@ -3671,7 +3670,6 @@ TextureImporter:
       Forest Cliff_103: -487318075
       Forest Cliff_57: 1503742733
       Forest Cliff_14: 316001217
-      Forest Cliff_150: 1115216544
       Forest Cliff_133: 548811683
       Forest Cliff_121: 851890545
       Forest Cliff_73: 879181377
@@ -3779,15 +3777,17 @@ TextureImporter:
       Forest Cliff_152: 382193968
       Forest Cliff_54: -138069576
       Forest Cliff_145: 1517087224
-      Forest Cliff_42: 712048470
+      Forest Cliff_90: -1817692474
+      Forest Cliff_150: 1115216544
       Forest Cliff_64: 296993498
-      Forest Cliff_162: -1774771855
+      Forest Cliff_42: 712048470
       Forest Cliff_44: -505424069
-      Forest Cliff_164: -1673085222
+      Forest Cliff_162: -1774771855
       Forest Cliff_31: 182401127
       Forest Cliff_22: 442502625
-      Forest Cliff_106: 1207248056
+      Forest Cliff_164: -1673085222
       Forest Cliff_66: 1448070807
+      Forest Cliff_106: 1207248056
       Forest Cliff_8: -889623089
       Forest Cliff_83: 401268823
       Forest Cliff_110: -1157687752

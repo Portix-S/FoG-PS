@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -10723,7 +10723,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Trees_80: -1957124328
+      Trees_276: -1706017762
       Trees_425: 421899027
       Trees_65: -95702756
       Trees_478: 1487936298
@@ -11223,10 +11223,10 @@ TextureImporter:
       Trees_327: 507766807
       Trees_453: 903065097
       Trees_285: 1080809669
-      Trees_443: -801528111
-      Trees_62: 742371078
-      Trees_276: -1706017762
       Trees_126: -1066577365
+      Trees_443: -801528111
+      Trees_80: -1957124328
+      Trees_62: 742371078
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

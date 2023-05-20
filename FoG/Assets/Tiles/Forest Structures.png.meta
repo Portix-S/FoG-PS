@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -9522,13 +9522,13 @@ TextureImporter:
       Forest Structures_278: 447380614
       Forest Structures_417: -256212648
       Forest Structures_8: -1868661856
-      Forest Structures_176: -733836974
       Forest Structures_353: -1254892238
       Forest Structures_133: -1154522757
       Forest Structures_295: -311670297
       Forest Structures_304: -993485533
       Forest Structures_436: 1907010619
       Forest Structures_441: -1864838961
+      Forest Structures_176: -733836974
       Forest Structures_320: 679676870
       Forest Structures_249: 1414528971
       Forest Structures_290: -668008862
@@ -9562,14 +9562,13 @@ TextureImporter:
       Forest Structures_180: -643791274
       Forest Structures_352: -573104962
       Forest Structures_282: -426643802
-      Forest Structures_139: 2098297366
       Forest Structures_78: -602017220
-      Forest Structures_225: -1900845646
+      Forest Structures_139: 2098297366
+      Forest Structures_301: 591772900
       Forest Structures_86: -1727230954
       Forest Structures_53: 1574137411
       Forest Structures_411: -1159194093
       Forest Structures_250: 709887951
-      Forest Structures_301: 591772900
       Forest Structures_112: 1800630278
       Forest Structures_284: 2091330479
       Forest Structures_159: -861451005
@@ -9578,6 +9577,7 @@ TextureImporter:
       Forest Structures_187: -1341555340
       Forest Structures_314: 1251696641
       Forest Structures_362: 182249504
+      Forest Structures_225: -1900845646
       Forest Structures_175: -652501875
       Forest Structures_46: 1246222757
       Forest Structures_331: -1472870521
@@ -9606,11 +9606,11 @@ TextureImporter:
       Forest Structures_390: -221073395
       Forest Structures_79: 459115612
       Forest Structures_59: -1545886769
-      Forest Structures_263: -2102475680
       Forest Structures_413: 86652081
+      Forest Structures_263: -2102475680
+      Forest Structures_440: -866042936
       Forest Structures_244: 1254230226
       Forest Structures_203: 50506071
-      Forest Structures_440: -866042936
       Forest Structures_179: 995331056
       Forest Structures_162: -1490452549
       Forest Structures_140: -154129396
@@ -9676,11 +9676,11 @@ TextureImporter:
       Forest Structures_259: 1482380763
       Forest Structures_287: 1018380112
       Forest Structures_275: 1066293820
+      Forest Structures_306: -91608204
       Forest Structures_10: 1671682280
       Forest Structures_29: -1180079780
       Forest Structures_182: 1380296024
       Forest Structures_269: 756938317
-      Forest Structures_306: -91608204
       Forest Structures_376: -1938615263
       Forest Structures_35: 2011065163
       Forest Structures_193: -2004430175
@@ -9726,13 +9726,13 @@ TextureImporter:
       Forest Structures_246: 1745826166
       Forest Structures_333: -813485808
       Forest Structures_40: 28856680
-      Forest Structures_406: -2091653195
-      Forest Structures_397: 1606893153
       Forest Structures_409: -131491596
+      Forest Structures_397: 1606893153
       Forest Structures_261: -617563820
       Forest Structures_238: 1755718745
       Forest Structures_165: 1310808783
       Forest Structures_298: -1188042079
+      Forest Structures_406: -2091653195
       Forest Structures_389: 613194826
       Forest Structures_89: 705910974
       Forest Structures_392: 1412276081
@@ -9750,8 +9750,8 @@ TextureImporter:
       Forest Structures_363: -1681347001
       Forest Structures_9: 849222141
       Forest Structures_23: -855836490
-      Forest Structures_230: -1115666043
       Forest Structures_328: -1130941623
+      Forest Structures_230: -1115666043
       Forest Structures_31: -483416269
       Forest Structures_177: 701784240
       Forest Structures_351: 412055387
