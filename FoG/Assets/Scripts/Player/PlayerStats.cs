@@ -17,7 +17,17 @@ public class PlayerStats : MonoBehaviour
         {
             health = 0;
             Destroy(gameObject);
-            SceneManager.LoadScene(0);
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().TryLoadScene();
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Enemy")
+        {
+            TakeDamage(50);
+            Destroy(collision.gameObject);
+        }
+    }
+
 }

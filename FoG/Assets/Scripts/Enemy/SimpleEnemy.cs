@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SimpleEnemy : MonoBehaviour
 {
-    private int health = 100;
     Rigidbody2D enemyRb;
     [SerializeField] float enemySpeed;
     [SerializeField] float shootingInterval = 1.5f;
@@ -14,9 +13,6 @@ public class SimpleEnemy : MonoBehaviour
     {
         enemyRb = GetComponent<Rigidbody2D>();
         enemyRb.velocity = new Vector2(0, -1) * enemySpeed;
-
-        
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,17 +41,4 @@ public class SimpleEnemy : MonoBehaviour
         Invoke("TryShooting", shootingInterval);
     }
 
-    public void TakeDamage(int amount)
-    {
-        if(health - amount > 0)
-        {
-            health -= amount;
-        }
-        else
-        {
-            health = 0;
-            Destroy(gameObject);
-            //Give points to player
-        }
-    }
 }

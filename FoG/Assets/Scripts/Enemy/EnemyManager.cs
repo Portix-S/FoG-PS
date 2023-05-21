@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     void SpawnSimpleEnemy()
     {
         GameObject enemy = Instantiate(simpleEnemyPrefab);
-        float startX = UnityEngine.Random.Range(startPos.x - 18f, startPos.x + 18f);
+        float startX = Random.Range(startPos.x - 18f, startPos.x + 18f);
 
         enemy.transform.position = new Vector3(startX, startPos.y, startPos.z);
     }

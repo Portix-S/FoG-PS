@@ -27,7 +27,7 @@ public class LaserGun : MonoBehaviour
         if (collision.transform.tag == "Enemy")
         {
             // Show Damage
-            collision.gameObject.GetComponent<SimpleEnemy>().TakeDamage(bulletDamage);
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(bulletDamage);
             Destroy(gameObject);
         }
     }
