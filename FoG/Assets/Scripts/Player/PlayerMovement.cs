@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 objPos = transform.position;
         objPos.x = Mathf.Clamp(objPos.x, -limits.x+1.35f, limits.x-1.35f);
-        objPos.y = Mathf.Clamp(objPos.y, limits.y-19.2f, limits.y-0.6f);
+        objPos.y = Mathf.Clamp(objPos.y, limits.y-19.8f, limits.y-0.6f);
         transform.position = objPos;
     }
     //*/
