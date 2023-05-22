@@ -6,6 +6,7 @@ public class LaserGun : MonoBehaviour
 {
     [SerializeField] int bulletDamage;
     [SerializeField] float bulletSpeed;
+    [SerializeField] Transform minorDamageExplosion;
 
     Rigidbody2D bulletRb;
 
@@ -24,10 +25,12 @@ public class LaserGun : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Enemy")
+        if (collision.transform.tag == "Enemy" || collision.transform.tag == "Boss")
         {
             // Show Damage
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(bulletDamage);
+            Transform explosion = Instantiate(minorDamageExplosion, transform.position, transform.rotation);
+            Destroy(explosion.gameObject, 0.5f);
             Destroy(gameObject);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int health = 100;
+    [SerializeField]private int health = 100;
 
     public void TakeDamage(int amount)
     {
@@ -27,6 +27,10 @@ public class PlayerStats : MonoBehaviour
         {
             TakeDamage(50);
             Destroy(collision.gameObject);
+        }
+        else if(collision.transform.tag == "Boss")
+        {
+            TakeDamage(50);
         }
     }
 

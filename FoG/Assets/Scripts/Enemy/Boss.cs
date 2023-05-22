@@ -6,27 +6,75 @@ public class Boss : MonoBehaviour
 {
     List<Transform> laserList;
     public Transform[] laserPositions;
+    public GameObject[] bossSprites;
     [SerializeField] Transform laser;
+    [SerializeField] Transform bullet;
     Rigidbody2D bossRb;
     [SerializeField] float enemySpeed;
+    Animator bossAnim;
+    EnemyHealth bossHealth;
+    bool isDying;
+    bool onPosition;
+    [SerializeField] GameObject[] GunPositions;
+    int currentGunPos = 1;
+    int numberOfBullets;
+    float shootingCooldown = 1;
+    [SerializeField] float angle;
 
     // Start is called before the first frame update
     void Start()
     {
         bossRb = GetComponent<Rigidbody2D>();
         bossRb.velocity = new Vector2(0, -1) * enemySpeed;
+        bossAnim = GetComponent<Animator>();
+        bossHealth = GetComponent<EnemyHealth>();
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "BossTrigger")
+        if (collision.tag == "BossTrigger" && !isDying && !onPosition)
         {
-            Debug.Log("EnteredTrigger");
+            bossHealth.immortal = false;
             //Stop
             bossRb.velocity = Vector2.zero;
+            //Animation Started
+            //bossAnim.applyRootMotion = false;
+            bossAnim.SetBool("OnPosition", true);
+            onPosition = true;
             //Shoot();
             Invoke("RepeatLaserAttack", 5f);
+            Invoke("TryToShoot", 0.5f);
         }
+    }
+
+    private void Shoot()
+    {
+        if (!isDying)
+        {
+            for (int i = 0; i < numberOfBullets; i++)
+            {
+                Transform bulletT = Instantiate(bullet, GunPositions[currentGunPos].transform.position, transform.rotation);
+                Debug.Log(GunPositions[currentGunPos].transform.rotation.z);
+                bulletT.GetComponent<Rigidbody2D>().velocity = new Vector2(GunPositions[currentGunPos].transform.rotation.z, -1f) * 10f;
+                currentGunPos++;
+                if (currentGunPos > GunPositions.Length - 1)
+                    currentGunPos = 0;
+            }
+        }
+    }
+
+    private void TryToShoot()
+    {
+        numberOfBullets = Random.Range(0, GunPositions.Length);
+        Shoot();
+        if(!isDying)
+            Invoke("TryToShoot", shootingCooldown);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
     void LaserAttack()
@@ -55,12 +103,42 @@ public class Boss : MonoBehaviour
     {
         LaserAttack();
         //Debug.Log("laser");
-        Invoke("RepeatLaserAttack", 5f);
+        if (!isDying)
+        {
+            Invoke("RepeatLaserAttack", 5f);
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayerDeathAnim()
     {
-        
+        bossAnim.SetBool("IsDying", true);
+        isDying = true;
+    }
+
+    public void TryToChangeSprite()
+    {
+        if (bossHealth.GetHealthPercentage() > 0.75f)
+            return;
+        else if (bossHealth.GetHealthPercentage() > 0.50f)
+        {
+            bossSprites[0].SetActive(false);
+            bossSprites[1].SetActive(true);
+        }
+        else if (bossHealth.GetHealthPercentage() > 0.25f)
+        {
+            bossSprites[1].SetActive(false);
+            bossSprites[2].SetActive(true);
+        }
+        else if (bossHealth.GetHealthPercentage() > 0.10f)
+        {
+            bossSprites[2].SetActive(false);
+            bossSprites[3].SetActive(true);
+        }
+        else
+        {
+            bossSprites[3].SetActive(false);
+            bossSprites[4].SetActive(true);
+        }
     }
 }

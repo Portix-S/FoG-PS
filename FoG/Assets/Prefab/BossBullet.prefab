@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2521998716566177828}
   - component: {fileID: -2479633000514632502}
   - component: {fileID: -130198097031372711}
-  - component: {fileID: 1699019705390253785}
-  m_Layer: 8
-  m_Name: BoltBullet
+  - component: {fileID: -6347368884162445811}
+  m_Layer: 11
+  m_Name: BossBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 29
+  m_SortingOrder: 31
   m_Sprite: {fileID: 21300000, guid: 0113e787f5f0a9246842466cc3bf8c71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 10
-  bulletSpeed: 20
+  bulletSpeed: 15
   bulletRb: {fileID: 0}
 --- !u!95 &-2479633000514632502
 Animator:
@@ -144,7 +144,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1699019705390253785
+--- !u!58 &-6347368884162445811
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

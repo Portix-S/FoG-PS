@@ -28,17 +28,17 @@ public class CloudSpawner : MonoBehaviour
     void SpawnCloud(Vector3 startPos)
     {
 
-        int randomIndex = UnityEngine.Random.Range(0, clouds.Length);
+        int randomIndex = Random.Range(0, clouds.Length);
         GameObject cloud = Instantiate(clouds[randomIndex]);
 
-        float startX = UnityEngine.Random.Range(startPos.x - 18f, startPos.x + 18f);
+        float startX = Random.Range(startPos.x - 18f, startPos.x + 18f);
 
         cloud.transform.position = new Vector3(startX, startPos.y, 100f);
 
-        float scale = UnityEngine.Random.Range(1f, 4f);
+        float scale = Random.Range(1f, 4f);
         cloud.transform.localScale = new Vector2(scale, scale);
 
-        float speed = UnityEngine.Random.Range(16f, 32f);
+        float speed = Random.Range(16f, 32f);
         cloud.GetComponent<CloudScript>().StartFloating(speed, endPoint.transform.position.y);
 
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1491108156}
   - component: {fileID: 1491108157}
   - component: {fileID: 1491108158}
+  - component: {fileID: 5133707303768357795}
   m_Layer: 8
   m_Name: LaserSprite
   m_TagString: Enemy
@@ -118,6 +119,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f973e7fdd900d14686da5393e10cbed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserDamage: 2
+--- !u!61 &5133707303768357795
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491108154}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0057661645, y: 0.7656539}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 2.24}
+    newSize: {x: 0.64, y: 2.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.25942633, y: 0.15185273}
+  m_EdgeRadius: 0
 --- !u!1 &6863045330580276739
 GameObject:
   m_ObjectHideFlags: 0

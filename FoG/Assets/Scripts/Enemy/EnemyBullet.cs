@@ -7,13 +7,14 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] int bulletDamage;
     [SerializeField] float bulletSpeed;
 
-    Rigidbody2D bulletRb;
+    public Rigidbody2D bulletRb;
 
     // Start is called before the first frame update
     void Start()
     {
         bulletRb = GetComponent<Rigidbody2D>();
-        bulletRb.velocity = new Vector2(0, -1) * bulletSpeed;
+        if(gameObject.layer != 11)
+            bulletRb.velocity = Vector2.down * bulletSpeed;
     }
 
     private void Update()
