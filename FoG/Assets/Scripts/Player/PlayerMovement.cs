@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
 
     [SerializeField] Vector2 limits;
+    private Animator playerAnim;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         limits = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        playerAnim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -28,7 +30,25 @@ public class PlayerMovement : MonoBehaviour
             movementX = 1f;
         if (Input.GetKey(KeyCode.A))
             movementX = -1f;
-        
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A))
+            movementX = 0f;
+
+        if (movementX == 0f)
+        {
+            playerAnim.SetBool("IsGoingRight", false);
+            playerAnim.SetBool("IsGoingLeft", false);
+        }
+        else if(movementX > 0f)
+        {
+            playerAnim.SetBool("IsGoingRight", true);
+            playerAnim.SetBool("IsGoingLeft", false);
+        }
+        else
+        {
+            playerAnim.SetBool("IsGoingRight", false);
+            playerAnim.SetBool("IsGoingLeft", true);
+        }
+
         moveDirection = new Vector3(movementX, movementY).normalized;
     }
 

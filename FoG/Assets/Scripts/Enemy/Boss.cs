@@ -43,7 +43,7 @@ public class Boss : MonoBehaviour
             bossAnim.SetBool("OnPosition", true);
             onPosition = true;
             //Shoot();
-            Invoke("RepeatLaserAttack", 5f);
+            Invoke("RepeatLaserAttack", 2f);
             Invoke("TryToShoot", 0.5f);
         }
     }
@@ -79,7 +79,7 @@ public class Boss : MonoBehaviour
 
     void LaserAttack()
     {
-        int numberOfLasers = Random.Range(1, 4);
+        int numberOfLasers = Random.Range(1, 5);
         List<int> randomList = new List<int>();
         laserList = new List<Transform>();
 
@@ -101,10 +101,11 @@ public class Boss : MonoBehaviour
 
     void RepeatLaserAttack()
     {
-        LaserAttack();
-        //Debug.Log("laser");
         if (!isDying)
         {
+            LaserAttack();
+        //Debug.Log("laser");
+        
             Invoke("RepeatLaserAttack", 5f);
         }
 
