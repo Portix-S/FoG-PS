@@ -9,6 +9,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Transform deathExplosion;
     public bool immortal;
     Boss bossScript;
+    [SerializeField] private int amountOfPoints;
+
     private void Start()
     {
         totalHealth = health;
@@ -25,7 +27,7 @@ public class EnemyHealth : MonoBehaviour
             else
             {
                 health = 0;
-                if (gameObject.layer != 11)
+                if (gameObject.layer != 11) // Checks if it's not the boss
                 {
                     Transform explosion = Instantiate(deathExplosion, transform.position, transform.rotation);
                     explosion.localScale = new Vector2(2f, 2f);
@@ -36,13 +38,21 @@ public class EnemyHealth : MonoBehaviour
                 {
                     bossScript.PlayerDeathAnim();
                 }
-                //Give points to player
+                GivePoints();
+
             }
             if(gameObject.layer == 11)
             {
                 TryChangingSprite();
             }
         }
+    }
+
+
+    private void GivePoints()
+    {
+        GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gm.AddPoints(amountOfPoints * gm.multiplier);
     }
 
     public float GetHealthPercentage()

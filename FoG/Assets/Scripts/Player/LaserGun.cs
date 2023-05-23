@@ -34,4 +34,5 @@ public class LaserGun : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }
