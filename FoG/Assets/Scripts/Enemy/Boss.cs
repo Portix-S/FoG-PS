@@ -20,7 +20,8 @@ public class Boss : MonoBehaviour
     int numberOfBullets;
     float shootingCooldown = 1;
     [SerializeField] float angle;
-
+    int horMove = 1;
+    int moveCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,7 @@ public class Boss : MonoBehaviour
             //Shoot();
             Invoke("RepeatLaserAttack", 2f);
             Invoke("TryToShoot", 0.5f);
+            Invoke("TryLateralMove", 3f);
         }
     }
 
@@ -74,6 +76,8 @@ public class Boss : MonoBehaviour
 
     public void Die()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().ChangeTotalLives(+1);
+        bossHealth.GivePoints();
         Destroy(gameObject);
     }
 
@@ -111,10 +115,39 @@ public class Boss : MonoBehaviour
 
     }
 
+    void TryLateralMove()
+    {
+        if (!isDying)
+        {
+            LateralMove();
+
+            Invoke("TryLateralMove", 9f);
+        }
+    }
+
+    void LateralMove()
+    {
+        horMove *= -1;
+        moveCount++;
+        bossRb.velocity = new Vector2(horMove, 0) * enemySpeed;
+        Invoke("StopLateralMove", 5f);
+    }
+
+    void StopLateralMove()
+    {
+        bossRb.velocity = Vector2.zero;
+        if (moveCount % 2 == 0)
+        {
+            horMove *= -1;
+            moveCount = 0;
+        }
+    }
+
     public void PlayerDeathAnim()
     {
         bossAnim.SetBool("IsDying", true);
         isDying = true;
+        bossRb.velocity = Vector2.zero;
     }
 
     public void TryToChangeSprite()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
-
+	private GameManager gm;
 	[System.Serializable]
 	public class Wave
 	{
@@ -42,6 +42,7 @@ public class WaveSpawner : MonoBehaviour
 	{
 		waveCountdown = timeBetweenWaves;
         startPos = transform.position;
+		gm = GetComponent<GameManager>();
 	}
 
 	void Update()
@@ -65,7 +66,7 @@ public class WaveSpawner : MonoBehaviour
 				StartCoroutine( SpawnWave ( waves[nextWave] ) );
 			}
 		}
-		else
+		else if(!gm.onMenu)
 		{
 			waveCountdown -= Time.deltaTime;
 		}
@@ -77,15 +78,24 @@ public class WaveSpawner : MonoBehaviour
 
 		state = SpawnState.COUNTING;
 		waveCountdown = timeBetweenWaves;
-
-		if (nextWave + 1 > waves.Length - 1)
+		Debug.Log(gm.hasRequiredPoints + " " + nextWave + " " + waves.Length);
+		if (nextWave + 1 > waves.Length - 1 || (nextWave == waves.Length - 2 && !gm.hasRequiredPoints))
 		{
 			nextWave = 0;
+			if(gm.hasRequiredPoints)
+            {
+				gm.ResetWavePoints();
+            }
 			Debug.Log("ALL WAVES COMPLETE! Looping...");
 		}
 		else
 		{
-			nextWave++;
+			if(gm.hasRequiredPoints)
+            {
+				nextWave = waves.Length - 1;
+            }
+            else 
+				nextWave++;
 		}
 	}
 

@@ -539,6 +539,7 @@ MonoBehaviour:
   deathExplosion: {fileID: 2393075918118755178, guid: 40464e8ac24ca5648af95529784931c4, type: 3}
   immortal: 1
   amountOfPoints: 100
+  dropChance: 60
 --- !u!114 &1147715033203870673
 MonoBehaviour:
   m_ObjectHideFlags: 0

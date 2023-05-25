@@ -6,7 +6,7 @@ public class RobotEnemy : MonoBehaviour
 {
     Rigidbody2D enemyRb;
     [SerializeField] float enemySpeed;
-    private float shootingInterval = 0.5f;
+    private float shootingInterval = 0.8f;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform[] bulletPos;
     int currentGunPos = 0;
@@ -43,7 +43,7 @@ public class RobotEnemy : MonoBehaviour
     {
         Shoot();
         if (currentGunPos == bulletPos.Length - 1)
-            Invoke("TryShooting", shootingInterval*2f);
+            Invoke("TryShooting", shootingInterval*1.6f);
         else
             Invoke("TryShooting", shootingInterval);
     }

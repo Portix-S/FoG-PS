@@ -16,7 +16,7 @@ public class EnemyBullet : MonoBehaviour
         bulletRb = GetComponent<Rigidbody2D>();
         if(gameObject.layer != 11)
             bulletRb.velocity = Vector2.down * bulletSpeed;
-        Destroy(gameObject, 1.5f);
+        Destroy(gameObject, 2f);
     }
 
     private void Update()

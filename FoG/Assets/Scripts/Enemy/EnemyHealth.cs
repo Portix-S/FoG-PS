@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public bool immortal;
     Boss bossScript;
     [SerializeField] private int amountOfPoints;
+    [SerializeField] int dropChance;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
             }
             else
             {
+                immortal = true;
                 health = 0;
                 if (gameObject.layer != 11) // Checks if it's not the boss
                 {
@@ -33,13 +35,12 @@ public class EnemyHealth : MonoBehaviour
                     explosion.localScale = new Vector2(2f, 2f);
                     Destroy(explosion.gameObject, 0.5f);
                     Destroy(gameObject);
+                    GivePoints();
                 }
                 else
                 {
                     bossScript.PlayerDeathAnim();
                 }
-                GivePoints();
-
             }
             if(gameObject.layer == 11)
             {
@@ -49,10 +50,11 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    private void GivePoints()
+    public void GivePoints()
     {
         GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         gm.AddPoints(amountOfPoints * gm.multiplier);
+        gm.TrySpawningPowerUp(dropChance, transform.position);
     }
 
     public float GetHealthPercentage()
@@ -64,5 +66,9 @@ public class EnemyHealth : MonoBehaviour
     {
         bossScript = gameObject.GetComponent<Boss>();
         bossScript.TryToChangeSprite();
+    }
+
+    private void OnDestroy()
+    {
     }
 }
