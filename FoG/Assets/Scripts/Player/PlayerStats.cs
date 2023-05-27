@@ -47,7 +47,9 @@ public class PlayerStats : MonoBehaviour
                 else
                 {
                     gameObject.SetActive(false);
-                    ShowFinalMenu();
+                    ResetStats();
+                    if (gm.CheckEndGame())
+                        ShowFinalMenu();
                 }
             }
         }
@@ -55,11 +57,17 @@ public class PlayerStats : MonoBehaviour
 
     private void ShowFinalMenu()
     {
+        
+        gm.ShowFinalWindow(won);
+        gm.gameObject.GetComponent<WaveSpawner>().Reset();
+    }
+
+    private void ResetStats()
+    {
         transform.position = initialPosition;
         totalLives = 3;
         health = 2;
-        gm.ShowFinalWindow(won);
-        gm.gameObject.GetComponent<WaveSpawner>().Reset();
+        healthBarFill.fillAmount = 1f;
     }
     public void ChangeTotalLives(int amount)
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSystem : MonoBehaviour
+public class WeaponSystemP2 : MonoBehaviour
 {
     [SerializeField] GameObject[] GunPositions;
     [SerializeField] GameObject laser;
@@ -12,7 +12,7 @@ public class WeaponSystem : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             for (int i = 0; i < numberOfLasers; i++)
             {
