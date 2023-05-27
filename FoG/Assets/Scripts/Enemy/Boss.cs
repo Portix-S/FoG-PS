@@ -76,7 +76,9 @@ public class Boss : MonoBehaviour
 
     public void Die()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().ChangeTotalLives(+1);
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        playerStats.ChangeTotalLives(+1);
+        playerStats.won = true;
         bossHealth.GivePoints();
         Destroy(gameObject);
     }

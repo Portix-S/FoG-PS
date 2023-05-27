@@ -11,10 +11,11 @@ public class EnemyHealth : MonoBehaviour
     Boss bossScript;
     [SerializeField] private int amountOfPoints;
     [SerializeField] int dropChance;
-
+    GameManager gm;
     private void Start()
     {
         totalHealth = health;
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     public void TakeDamage(int amount)
@@ -24,6 +25,8 @@ public class EnemyHealth : MonoBehaviour
             if (health - amount > 0)
             {
                 health -= amount;
+                if(gameObject.layer == 11)
+                    gm.TrySpawningPowerUp(1, transform.position);
             }
             else
             {
@@ -52,8 +55,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void GivePoints()
     {
-        GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        gm.AddPoints(amountOfPoints * gm.multiplier);
+        gm.AddPoints(amountOfPoints * gm.pointsMultiplier);
         gm.TrySpawningPowerUp(dropChance, transform.position);
     }
 

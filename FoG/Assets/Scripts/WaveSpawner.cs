@@ -38,7 +38,12 @@ public class WaveSpawner : MonoBehaviour
 		get { return state; }
 	}
 
-	void Start()
+    public void Reset()
+    {
+		nextWave = 0;
+		Destroy(GameObject.FindGameObjectWithTag("Boss"));
+    }
+    void Start()
 	{
 		waveCountdown = timeBetweenWaves;
         startPos = transform.position;

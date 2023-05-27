@@ -8,11 +8,6 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] GameObject laser;
     int currentGunPos = 0;
     public int numberOfLasers = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     private void Update()
