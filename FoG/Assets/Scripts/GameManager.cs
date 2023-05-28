@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject howToPlayScene;
     [SerializeField] GameObject finalMenu;
+    [SerializeField] GameObject newHighScore;
+    [SerializeField] GameObject continueButton;
+    [SerializeField] GameObject playAgainButton;
     [SerializeField] TextMeshProUGUI gameOverText;
     [SerializeField] TextMeshProUGUI gameOverShadowText;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -34,10 +37,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI highScoreShadowText;
     public bool onMenu = true;
     private bool singlePlayer = true;
-    private bool endless;
+    public bool endless;
     int players;
-    private void StartGame()
+
+    public void SetEndless()
     {
+        endless = true;
+    }
+
+    public void StartGame()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         onMenu = false;
         menuUI.SetActive(false);
@@ -45,22 +55,30 @@ public class GameManager : MonoBehaviour
         player.SetActive(true);
         gameUI.SetActive(true);
         finalMenu.SetActive(false);
-        //PlayerPrefs.SetInt("HighScore", 0);
+        newHighScore.SetActive(false);
+        player.GetComponent<PlayerStats>().ResetHealth();
         if (singlePlayer)
         {
-            // Remove player 2
             player2.SetActive(false);
             player2Health.SetActive(false);
             highScoreIngameText.text = "Hi " + PlayerPrefs.GetInt("SingleHighScore").ToString("000000");
+            players = 1;
         }
         else
         {
             player2.SetActive(true);
             player2Health.SetActive(true);
-            //player2Health.SetActive(true);
+            players = 2;
+            player2.GetComponent<PlayerStats>().ResetHealth();
             //Change Spawners
             highScoreIngameText.text = "Hi " + PlayerPrefs.GetInt("MultiHighScore").ToString("000000");
         }
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy") ;
+        foreach (GameObject enemy in enemies)
+            Destroy(enemy);
+        enemies = GameObject.FindGameObjectsWithTag("EnemyBullet");
+        foreach (GameObject enemy in enemies)
+            Destroy(enemy);
     }
 
     public void ShowPlayOptions()
@@ -72,14 +90,14 @@ public class GameManager : MonoBehaviour
     public void SinglePlayer()
     {
         singlePlayer = true;
-        players = 1;
+        endless = false;
         StartGame();
     }
 
     public void MultiPlayer()
     {
         singlePlayer = false;
-        players = 2;
+        endless = false;
         StartGame();
     }
 
@@ -103,29 +121,36 @@ public class GameManager : MonoBehaviour
         gameUI.SetActive(false);
         finalMenu.SetActive(false);
         playOptions.SetActive(false);
-    }
+        newHighScore.SetActive(false);
+        points = 0;
+        wavePoints = 0f;
+        hasRequiredPoints = false;
+        pointsText.text = "Score " + points.ToString("000000");
 
+    }
 
     public void ShowFinalWindow(bool won)
     {
+        Cursor.lockState = CursorLockMode.None;
         onMenu = true;
         gameUI.SetActive(false);
         finalMenu.SetActive(true);
+        
         //Debug.Log(highScore + " " + PlayerPrefs.GetInt("SingleHighScore") + " " + points);
-        if (points > PlayerPrefs.GetInt("SingleHighScore") || points > PlayerPrefs.GetInt("MultiHighScore"))
+        if ((points > PlayerPrefs.GetInt("SingleHighScore") && singlePlayer)|| (points > PlayerPrefs.GetInt("MultiHighScore") && !singlePlayer))
         {
-            // Show "new HighScore
+            newHighScore.SetActive(true);
             if (singlePlayer)
             {
                 PlayerPrefs.SetInt("SingleHighScore", (int)points);
-                singlePlayerHighScore = PlayerPrefs.GetInt("SingleHighScore").ToString("000000");
             }
             else
             {
                 PlayerPrefs.SetInt("MultiHighScore", (int)points);
-                multiPlayerHighScore = PlayerPrefs.GetInt("MultiHighScore").ToString("000000");
             }
         }
+        singlePlayerHighScore = PlayerPrefs.GetInt("SingleHighScore").ToString("000000");
+        multiPlayerHighScore = PlayerPrefs.GetInt("MultiHighScore").ToString("000000");
 
         scoreText.text = "Score " + points.ToString("000000");
         scoreShadowText.text = scoreText.text;
@@ -143,17 +168,24 @@ public class GameManager : MonoBehaviour
 
         if (!endless && won)
         {
+            continueButton.SetActive(true);
+            playAgainButton.SetActive(false);
             gameOverText.text = "You Win";
             gameOverShadowText.text = gameOverText.text;
         }
         else
         {
+            continueButton.SetActive(false);
+            playAgainButton.SetActive(true);
             gameOverText.text = "Game Over";
             gameOverShadowText.text = gameOverText.text;
         }
-        points = 0;
-        wavePoints = 0f;
-        hasRequiredPoints = false;
+        if (!won)
+        {
+            points = 0;
+            wavePoints = 0f;
+            hasRequiredPoints = false;
+        }
         pointsText.text = "Score " + points.ToString("000000");
     }
 

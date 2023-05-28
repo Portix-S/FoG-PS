@@ -78,8 +78,8 @@ public class Boss : MonoBehaviour
     {
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         playerStats.ChangeTotalLives(+1);
-        playerStats.won = true;
         bossHealth.GivePoints();
+        playerStats.CheckIfEndless();
         Destroy(gameObject);
     }
 

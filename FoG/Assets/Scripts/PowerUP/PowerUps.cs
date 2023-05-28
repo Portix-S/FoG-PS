@@ -6,15 +6,19 @@ public class PowerUps : MonoBehaviour
 {
     [SerializeField]private string powerupName;
     PlayerStats playerScript;
-    // Start is called before the first frame update
-    void Start()
+    AudioSource audioSource;
+    [SerializeField] AudioClip powerUpClip;
+
+    private void Start()
     {
+        
     }
-    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
+            
+            //audioSource.Play();
             playerScript = collision.gameObject.GetComponent<PlayerStats>();
 
             if (powerupName == "Health")
@@ -27,6 +31,8 @@ public class PowerUps : MonoBehaviour
             {
                 playerScript.LaserPowerUp();
             }
+            audioSource = GameObject.FindGameObjectWithTag("PowerUpAudio").GetComponent<AudioSource>();
+            audioSource.PlayOneShot(powerUpClip);
             Destroy(gameObject);
         }
         else if (collision.tag == "DeathTrigger")

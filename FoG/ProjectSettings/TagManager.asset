@@ -10,6 +10,8 @@ TagManager:
   - GameManager
   - BossTrigger
   - Boss
+  - EnemyBullet
+  - PowerUpAudio
   layers:
   - Default
   - TransparentFX

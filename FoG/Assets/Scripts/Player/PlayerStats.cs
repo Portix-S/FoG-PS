@@ -24,9 +24,13 @@ public class PlayerStats : MonoBehaviour
     bool hasWeaponBuff;
     bool hasMultipleWeaponBuff;
     public bool won;
+    private bool dead;
     // Ideias para vida do player (Curti mt esse estilo)
     // https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Fpremium-vector%2Fpixel-art-health-bar_30197933.htm&psig=AOvVaw01amKH2v7pFUoaygdX6wLA&ust=1684943593926000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCND176fmi_8CFQAAAAAdAAAAABAI
     // https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fpt%2Fsearch%2Fhealth-bar-game&psig=AOvVaw01amKH2v7pFUoaygdX6wLA&ust=1684943593926000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCND176fmi_8CFQAAAAAdAAAAABAS
+    
+
+    
     public void TakeDamage(int amount)
     {
         if (!hasShield)
@@ -48,6 +52,7 @@ public class PlayerStats : MonoBehaviour
                 {
                     gameObject.SetActive(false);
                     ResetStats();
+                    dead = true;
                     if (gm.CheckEndGame())
                         ShowFinalMenu();
                 }
@@ -55,10 +60,19 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void CheckIfEndless()
+    {
+        if (!gm.endless)
+        {
+            won = true;
+            ShowFinalMenu();
+        }
+    }
+
     private void ShowFinalMenu()
     {
-        
         gm.ShowFinalWindow(won);
+        won = false;
         gm.gameObject.GetComponent<WaveSpawner>().Reset();
     }
 
@@ -67,8 +81,13 @@ public class PlayerStats : MonoBehaviour
         transform.position = initialPosition;
         totalLives = 3;
         health = 2;
+    }
+
+    public void ResetHealth()
+    {
         healthBarFill.fillAmount = 1f;
     }
+
     public void ChangeTotalLives(int amount)
     {
         if(totalLives + amount <= maxLives)
@@ -96,6 +115,7 @@ public class PlayerStats : MonoBehaviour
         weapon = GetComponent<WeaponSystem>();
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
+
 
     // Fazer o Respawn do player
     private void Respawn()
