@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15968cd8492b0a94a8925bbf21b0f3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 200
+  bulletDamage: 50
   bulletSpeed: 25
-  minorDamageExplosion: {fileID: 3461910128570953446, guid: 0d0361ccb94860c43856896ef99a2740, type: 3}
+  minorDamageExplosion: {fileID: 3461910128570953446, guid: 4e8dfd046b678d147befd207ba068558, type: 3}
 --- !u!50 &7198746228329630812
 Rigidbody2D:
   serializedVersion: 4

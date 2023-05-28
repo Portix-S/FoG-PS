@@ -540,6 +540,7 @@ MonoBehaviour:
   immortal: 1
   amountOfPoints: 100
   dropChance: 60
+  explosionClip: {fileID: 0}
 --- !u!114 &1147715033203870673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +573,7 @@ MonoBehaviour:
   - {fileID: 1226154420}
   - {fileID: 1405509476}
   angle: 0
+  winSound: {fileID: 8300000, guid: 7304406a646cdec4c8e72d26c0dd501b, type: 3}
 --- !u!50 &1147715033203870675
 Rigidbody2D:
   serializedVersion: 4

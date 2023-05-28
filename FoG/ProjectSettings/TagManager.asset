@@ -12,6 +12,7 @@ TagManager:
   - Boss
   - EnemyBullet
   - PowerUpAudio
+  - PlayerDeadAudio
   layers:
   - Default
   - TransparentFX

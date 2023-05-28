@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupName: Health
-  audioSource: {fileID: 0}
   powerUpClip: {fileID: 8300000, guid: 373186d8ec496664e82a38396058c215, type: 3}
 --- !u!50 &1772443578
 Rigidbody2D:
@@ -288,7 +287,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.55
+  m_GravityScale: 0.45
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI highScoreIngameText;
     public bool hasRequiredPoints;
     private float requiredPointToSpawnBoss = 300f;
+    [SerializeField] GameObject smokeAnim;
     [SerializeField] GameObject[] powerUps;
     [SerializeField] GameObject player;
     [SerializeField] GameObject player2;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     private bool singlePlayer = true;
     public bool endless;
     int players;
+    public int waveMultiplier;
 
     public void SetEndless()
     {
@@ -61,6 +63,8 @@ public class GameManager : MonoBehaviour
         {
             player2.SetActive(false);
             player2Health.SetActive(false);
+            waveMultiplier = 1;
+            requiredPointToSpawnBoss = 400f;
             highScoreIngameText.text = "Hi " + PlayerPrefs.GetInt("SingleHighScore").ToString("000000");
             players = 1;
         }
@@ -69,6 +73,8 @@ public class GameManager : MonoBehaviour
             player2.SetActive(true);
             player2Health.SetActive(true);
             players = 2;
+            waveMultiplier = 2;
+            requiredPointToSpawnBoss = 800f;
             player2.GetComponent<PlayerStats>().ResetHealth();
             //Change Spawners
             highScoreIngameText.text = "Hi " + PlayerPrefs.GetInt("MultiHighScore").ToString("000000");
@@ -104,6 +110,14 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public IEnumerator SmokeAnim(float delay, Vector3 initialPosition)
+    {
+        yield return new WaitForSeconds(delay);
+        GameObject smoke = Instantiate(smokeAnim, initialPosition + new Vector3(-0.08f, -0.9f, 0f), transform.rotation);
+        yield return new WaitForSeconds(0.6f);
+        Destroy(smoke);
     }
 
     public void HowToPlay()

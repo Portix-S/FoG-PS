@@ -9,7 +9,13 @@ public class WeaponSystem : MonoBehaviour
     int currentGunPos = 0;
     public int numberOfLasers = 1;
     bool input;
+    AudioSource audioSource;
     // Update is called once per frame
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         if(gameObject.name == "Player")
@@ -25,6 +31,7 @@ public class WeaponSystem : MonoBehaviour
                 if (currentGunPos > GunPositions.Length - 1)
                     currentGunPos = 0;
             }
+            audioSource.PlayOneShot(audioSource.clip);
         }
     }
 

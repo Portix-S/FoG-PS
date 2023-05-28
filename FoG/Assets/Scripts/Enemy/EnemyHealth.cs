@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int amountOfPoints;
     [SerializeField] int dropChance;
     GameManager gm;
+    [SerializeField] AudioClip explosionClip;
     private void Start()
     {
         totalHealth = health;
@@ -34,9 +35,8 @@ public class EnemyHealth : MonoBehaviour
                 health = 0;
                 if (gameObject.layer != 11) // Checks if it's not the boss
                 {
-                    Transform explosion = Instantiate(deathExplosion, transform.position, transform.rotation);
-                    explosion.localScale = new Vector2(2f, 2f);
-                    Destroy(explosion.gameObject, 0.5f);
+                    Explode();
+                    //AudioSource.PlayClipAtPoint(explosionClip, transform.position, 0.2f);
                     Destroy(gameObject);
                     GivePoints();
                 }
@@ -52,10 +52,16 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    public void Explode()
+    {
+        Transform explosion = Instantiate(deathExplosion, transform.position, transform.rotation);
+        explosion.localScale = new Vector2(2f, 2f);
+        Destroy(explosion.gameObject, 0.5f);
+    }
 
     public void GivePoints()
     {
-        gm.AddPoints(amountOfPoints * gm.pointsMultiplier);
+        gm.AddPoints(amountOfPoints * gm.multiplier);
         gm.TrySpawningPowerUp(dropChance, transform.position);
     }
 

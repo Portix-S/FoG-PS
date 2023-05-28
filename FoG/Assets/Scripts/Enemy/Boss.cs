@@ -22,6 +22,7 @@ public class Boss : MonoBehaviour
     [SerializeField] float angle;
     int horMove = 1;
     int moveCount;
+    [SerializeField] AudioClip winSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +81,8 @@ public class Boss : MonoBehaviour
         playerStats.ChangeTotalLives(+1);
         bossHealth.GivePoints();
         playerStats.CheckIfEndless();
+        playerStats.AddMultiplier();
+        AudioSource.PlayClipAtPoint(winSound, transform.position, 0.9f);
         Destroy(gameObject);
     }
 
