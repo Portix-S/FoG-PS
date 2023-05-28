@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player2;
     [SerializeField] GameObject player2Health;
     [SerializeField] GameObject gameUI;
+    [SerializeField] GameObject pauseUI;
     [SerializeField] GameObject playOptions;
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject howToPlayScene;
@@ -41,11 +42,39 @@ public class GameManager : MonoBehaviour
     public bool endless;
     int players;
     public int waveMultiplier;
+    bool onPause;
 
     public void SetEndless()
     {
         endless = true;
     }
+
+    private void Update()
+    {
+        if(!onMenu && Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!onPause)
+                Pause();
+            else
+                Resume();
+        }
+    }
+    public void Pause()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
+        gameUI.SetActive(false);
+        pauseUI.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
+        gameUI.SetActive(true);
+        pauseUI.SetActive(false);
+    }
+
 
     public void StartGame()
     {
